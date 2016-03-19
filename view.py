@@ -8,8 +8,10 @@ import PyQt5.QtCore as QtCore
 
 
 class MainWindow(QtWidgets.QMainWindow):
-	def __init__(self):
+	def __init__(self, x, y):
 		self.label = []
+		self.desktopX = x
+		self.desktopY = y
 
 		QtWidgets.QMainWindow.__init__(self)
 
@@ -20,6 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
 	# наш win
 	def configure_win(self):
 		self.setMinimumSize(780, 610)
+		self.setMaximumSize(self.desktopX, self.desktopY)
 		self.setWindowTitle('Просмотр изображений')
 		self.setWindowIcon(QtGui.QIcon('appicon.ico'))
 		self.move(50, 30)
@@ -76,7 +79,11 @@ class MainWindow(QtWidgets.QMainWindow):
 		
 
 app = QtWidgets.QApplication(sys.argv)
-mainWindow = MainWindow()
+
+desktopRect = app.desktop() # рабочий стол
+rect = desktopRect.availableGeometry() # прямоугольник
+
+mainWindow = MainWindow(rect.width(), rect.height()) # передаем размеры
 
 mainWindow.show()
 
