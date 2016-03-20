@@ -9,13 +9,17 @@ import PyQt5.QtCore as QtCore
 
 class MainWindow(QtWidgets.QMainWindow):
 	def __init__(self, x, y):
-		self.label = []
+		# контейнер для нашего изображения
+		self.labels = []
+		# размеры рабочей области нашего рабочего стола
 		self.desktopX = x
 		self.desktopY = y
 
 		QtWidgets.QMainWindow.__init__(self)
 
+		# конфигурируем наше окно
 		self.configure_win()
+		# делаем меню бар
 		self.configure_menu_bar()
 
 
@@ -46,14 +50,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
 	# меню => путь к изображению
 	def get_path_image_event(self):
+		# получаем путь к файлу
 		fileName = QtWidgets.QFileDialog.getOpenFileName(self, 'Open', '/home')
 		print(fileName)
+		# вызываем создание центральной области нашего MainWindow
 		self.configure_central_widget(fileName)
 
 
 	# меню => закрытие с проверкой, там есть sys.exit()
 	def close_event(self):
-		if len(self.label) != 0:
+		if len(self.labels) != 0:
 			reply = QtWidgets.QMessageBox()
 			reply.setWindowModality(1)
 			reply.question(self, 
@@ -71,19 +77,23 @@ class MainWindow(QtWidgets.QMainWindow):
 		image = QtGui.QPixmap(path[0])
 
 		# сам label
-		self.label.append(QtWidgets.QLabel(self))
-		self.label[0].setMaximumSize(740, 570)
-		self.label[0].setPixmap(image)
+		self.labels.append(QtWidgets.QLabel(self))
+		self.labels[0].setMaximumSize(740, 570) # временно нужно
+		self.labels[0].setPixmap(image)
 
-		self.setCentralWidget(self.label[0])
+
+		self.setCentralWidget(self.labels[0])
 		
 
 app = QtWidgets.QApplication(sys.argv)
 
-desktopRect = app.desktop() # рабочий стол
-rect = desktopRect.availableGeometry() # прямоугольник
+# рабочий стол
+desktopRect = app.desktop()
+# информация о размерах рабочего стола (только доступная часть экрана)
+rect = desktopRect.availableGeometry()
 
-mainWindow = MainWindow(rect.width(), rect.height()) # передаем размеры
+# главное окно
+mainWindow = MainWindow(rect.width(), rect.height())
 
 mainWindow.show()
 
