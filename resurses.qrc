@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="Icons">
+        <file>Checkmark.png</file>
+        <file>delete_red.png</file>
+        <file>dir.png</file>
+        <file>Error.png</file>
+        <file>no.png</file>
+        <file>save.png</file>
+    </qresource>
+</RCC>

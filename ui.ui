@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>MainWindow</class>
+    <widget class="QMainWindow" name="MainWindow">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>840</width>
+                <height>778</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>MainWindow</string>
+        </property>
+        <widget class="QWidget" name="centralwidget">
+            <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                    <widget class="QLabel" name="label_image0">
+                        <property name="maximumSize">
+                            <size>
+                                <width>700</width>
+                                <height>700</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string/>
+                        </property>
+                    </widget>
+                </item>
+            </layout>
+        </widget>
+        <widget class="QMenuBar" name="menubar">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>840</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <widget class="QMenu" name="menuFile">
+                <property name="title">
+                    <string>File</string>
+                </property>
+                <addaction name="actionOpen"/>
+                <addaction name="actionExit"/>
+            </widget>
+            <addaction name="menuFile"/>
+        </widget>
+        <widget class="QStatusBar" name="statusbar"/>
+        <action name="actionOpen">
+            <property name="icon">
+                <iconset resource="resurses.qrc">
+                    <normaloff>:/Icons/dir.png</normaloff>:/Icons/dir.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>Open</string>
+            </property>
+        </action>
+        <action name="actionExit">
+            <property name="icon">
+                <iconset resource="resurses.qrc">
+                    <normaloff>:/Icons/no.png</normaloff>:/Icons/no.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>Exit</string>
+            </property>
+        </action>
+    </widget>
+    <resources>
+        <include location="resurses.qrc"/>
+    </resources>
+    <connections>
+        <connection>
+            <sender>actionExit</sender>
+            <signal>triggered()</signal>
+            <receiver>MainWindow</receiver>
+            <slot>close_event()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>-1</x>
+                    <y>-1</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>419</x>
+                    <y>388</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>actionOpen</sender>
+            <signal>triggered()</signal>
+            <receiver>MainWindow</receiver>
+            <slot>get_path_image_event()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>-1</x>
+                    <y>-1</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>419</x>
+                    <y>388</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+    <slots>
+        <slot>close_event()</slot>
+        <slot>get_path_image_event()</slot>
+    </slots>
+</ui>
